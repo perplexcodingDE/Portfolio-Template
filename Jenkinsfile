@@ -12,8 +12,8 @@ pipeline {
     stage('Docker Build') {
       steps {
         sh encoding: 'UTF-8', label: '', returnStdout: true, script: '''docker info
-        docker build -t ${JOB_NAME}:${BUILD_NUMBER} .
-        docker tag ${JOB_NAME}:${BUILD_NUMBER} ${JOB_NAME}:latest
+        docker build -t portfolio-template:1.0.0-${BUILD_NUMBER} .
+        docker tag portfolio-template:1.0.0-${BUILD_NUMBER} portfolio-template:latest
         docker images'''
       }
     }
