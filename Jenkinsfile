@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Zip') {
       steps {
-        zip archive: true, dir: './*', glob: '', zipFile: 'WebPage.zip'
+        zip archive: true, dir: './', glob: '', zipFile: 'WebPage.zip'
       }
     }
   }
