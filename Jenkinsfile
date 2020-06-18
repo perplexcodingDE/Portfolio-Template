@@ -20,8 +20,8 @@ pipeline {
         stage('Docker Run') {
             steps {
                 sh encoding: 'UTF-8', label: '', returnStdout: true, script: '''
-                docker-compose down
-                docker-compose up -d
+                /usr/bin/docker-compose down
+                /usr/bin/docker-compose up -d
                 '''
             }
         }
