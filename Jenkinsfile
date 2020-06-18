@@ -11,11 +11,18 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        sh encoding: 'UTF-8', label: '', returnStdout: true, script: '''docker info
+        sh encoding: 'UTF-8', label: '', returnStdout: true, script: '''
         docker build -t portfolio-template:1.0.0-${BUILD_NUMBER} .
         docker tag portfolio-template:1.0.0-${BUILD_NUMBER} portfolio-template:latest
-        docker images'''
+        '''
       }
     }
-  }
+    stage('Docker Run') {
+      steps {
+        sh encoding: 'UTF-8', label: '', returnStdout: true, script: '''
+            docker-compose down
+            docker-compose up -d
+        '''
+      }
+    }
 }

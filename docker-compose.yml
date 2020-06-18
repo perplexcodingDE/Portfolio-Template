@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  portfolio-template:
+    image: portfolio-template:latest
+    ports:
+      - 8090:80
+    labels:
+      - "traefik.http.routers.portfolio-template.rule=Host(`gpt.t.pascal-haupt.codes`)"
+      - "traefik.port=80"
+      - "traefik.enable=true"
+#      - "traefik.http.routers.portfolio-template.service=portfolio-template-gpt"
+      - "traefik.http.routers.portfolio-template.tls=true"
+      - "traefik.http.routers.portfolio-template.tls.certresolver=myresolver"
+      - "traefik.http.routers.portfolio-template.entrypoints=websecure, web"
+      - "traefik.docker.network=docker0"
+    networks:
+      - docker0
+networks:
+  docker0:
+    external:
+      name: docker0
